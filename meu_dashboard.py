@@ -24,7 +24,7 @@ def carregar_dados():
         dados_exemplo.to_csv(caminho_arquivo, index=False)
 
     df = pd.read_csv(caminho_arquivo)
-    df['Receita'] = pd.to_numeric(df['Receita'], errors='coerce').fillna(0)
+    df['receita'] = pd.to_numeric(df['receita'], errors='coerce').fillna(0)
     return df
 
 
@@ -56,8 +56,8 @@ with col2:
 aba1, aba2 = st.tabs(['Evolução Mensal', 'Tabela de Dados'])
 
 with aba1:
-    dados_agrupados = df_filtrado.groupby('Mes', as_index=False)['Receita'].sum()
-    st.area_chart(dados_agrupados.set_index('Mes')['Receita'])
+    dados_agrupados = df_filtrado.groupby('Mes', as_index=False)['receita'].sum()
+    st.area_chart(dados_agrupados.set_index('Mes')['receita'])
 
 with aba2:
     st.dataframe(df_filtrado)
